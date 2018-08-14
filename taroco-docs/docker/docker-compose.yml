@@ -20,6 +20,30 @@ services:
     networks:
       - taroco
 
+  taroco-admin:
+    build:
+      context: ./
+      dockerfile: Dockerfile-admin
+    restart: always
+    ports:
+      - 10001:10001
+    volumes:
+      - /data/logs/taroco-admin/:/logs/taroco-admin/
+    networks:
+      - taroco
+
+  taroco-monitor:
+    build:
+      context: ./
+      dockerfile: Dockerfile-monitor
+    restart: always
+    ports:
+      - 10002:10002
+    volumes:
+      - /data/logs/taroco-monitor/:/logs/taroco-monitor/
+    networks:
+      - taroco
+
   taroco-gateway:
     build:
       context: ./
